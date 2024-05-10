@@ -10,7 +10,7 @@ This repository is for integrating all folders, scripts, and files from existing
 - Navigate to GITASI and copy the HTTP url of your target repo
 - Go back to Gitbash and type: `$ git clone http://10.100.10.119:9000/DSS-DW/TASI_DSSDW.git`
 
-### Multi-root Workspaces
+### VS Code Multi-root Workspaces
 - Multi-root Workspaces help you work on several related repositories at one time
   - Click `File > Add Folder to Workspace` and add a new root folder
   - Click the `EXPLORER` icon `(Ctrl+Shift+E)` on the left, you should see a new folder has been added
@@ -29,7 +29,7 @@ This repository is for integrating all folders, scripts, and files from existing
 - Update Package List
   - After the virtual environment is activated and new packages are installed, freeze dependencies: `py -m pip freeze > requirements.txt`
     - This will create a requirements.txt file, that can re-create the exact versions of all packages installed in an environment
-    
+
 ### .gitignore File
 - .venv
 
