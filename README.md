@@ -33,3 +33,20 @@ This repository is for integrating all folders, scripts, and files from existing
 ### .gitignore File
 - .venv
 
+### Branch Introduction
+- Prod/TASI_DSSDW
+  - Hold the stable and tested version of the code that is ready to be deployed to a production
+  - Only accept Pull Requests / Merge Requests from the Dev branch: `Dev/TASI_DSSDW`
+  - No parallel development on the Prod branch
+- Dev/TASI_DSSDW
+  - A branch where ongoing development work takes place
+  - It is used for integrating and testing new features, bug fixes, and other changes before they are considered stable and ready for deployment to a production environment
+  - Multiple feature branches may be created from the Dev branch to work on different features simultaneously
+  - Only accept Pull Requests / Merge Requests from the Feature branches
+- Feature/Issue_Name (e.g., Feature/Python_Virtual_Env_Setup)
+  - Implement a new feature or work on a specific development task within a project
+  - It is used to isolate changes related to a particular feature, allowing developers to work on these changes independently without affecting the main Dev or Prod branch until the feature is completed and tested
+  - A remote feature branch should be prepared for a PR and a code review 
+- Test/IssueName_DevelopersInitial (e.g., Test/Python_Virtual_Env_Setup_HZ)
+  - The Test branch can serve as a safe zone for developers to experiment with code in the repository
+  - The Test branch cannot be used for a PR submission; It can only be a local branch
