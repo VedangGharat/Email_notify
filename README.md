@@ -10,6 +10,18 @@ This repository is for integrating all folders, scripts, and files from existing
 - Navigate to GITASI and copy the HTTP url of your target repo
 - Go back to Gitbash and type: `$ git clone http://10.100.10.119:9000/DSS-DW/TASI_DSSDW.git`
 
+### Create a New Branch
+- Navigate to the GITASI page of your target repo
+- Click the link "[number] Branches" located below the repo description
+- Create a new branch from the Default Branch
+- Follow branch naming conventions as listed [here](#branch-introduction)
+
+### Switch to a Branch
+- Navigate into the directory of the cloned repo
+- Open Gitbash and type `$ git fetch` to retrieve up-to-date repo changes
+- To confirm the branch is available, type `$ git branch -a` to view all local and remote branches
+- To switch to the branch, type `$ git checkout [branch name]`
+
 ### VS Code Multi-root Workspaces
 - Multi-root Workspaces help you work on several related repositories at one time
   - Click `File > Add Folder to Workspace` and add a new root folder
