@@ -22,6 +22,12 @@ This repository is for integrating all folders, scripts, and files from existing
 - To confirm the branch is available, type `$ git branch -a` to view all local and remote branches
 - To switch to the branch, type `$ git checkout [branch name]`
 
+### Sync a Branch / Compare a folder or file between your local test branch and the remote Dev branch
+- Right-click a folder or a file
+- Click "Open Changes"
+- Click "Open Changes with Branch or Tag"
+- Choose a branch to compare with
+
 ### VS Code Multi-root Workspaces
 - Multi-root Workspaces help you work on several related repositories at one time
   - Click `File > Add Folder to Workspace` and add a new root folder
