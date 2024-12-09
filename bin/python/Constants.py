@@ -38,7 +38,8 @@ class Constants:
     INGEST_META_DB= ''
     INGEST_META_TABLE= ''
     INGEST_UPLOAD_LOG= ''
-
+    INGEST_EDI_TYPES = set(("837I", "837P"))
+    INGEST_SUPP_TYPES = set(("EOB", "PA", "MA"))
 
 
     
