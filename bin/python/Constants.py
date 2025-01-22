@@ -16,12 +16,14 @@ class Constants:
     WINSCP_PATH= ''
 
     # Email Notification
-    EMAIL_SERVER_IP = ''
-    EMAIL_SERVER_PORT = ''
-    EMAIL_SENDER_ADDR = ''
-    EMAIL_SENDER_NAME = ''
-    EMAIL_SMTP_KEY = ''
+    EMAIL_SERVER_IP = '128.171.103.65'
+    EMAIL_SERVER_PORT = '25'
+    EMAIL_SENDER_ADDR = 'noreply@tasi.org'
+    EMAIL_DEV_ADDR = ["vedang@hawaii.edu"]
+    EMAIL_CRED_PATH = r'C:\Users\vedang\Vedang\source\repos\TASI_DSSDW\bin\python\email.cred' 
+    EMAIL_SECRET_KEY  = r'C:\Users\vedang\Vedang\source\repos\TASI_DSSDW\bin\python\secret.key'
 
+    
     # SFTP
     SFTP_URL= ''
     SSH_KEY_PATH= ''
