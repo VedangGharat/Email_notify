@@ -1,1 +1,6 @@
 .venv
+*.key
+*.cred
+bin/python/Test.py
+dsad
+git 

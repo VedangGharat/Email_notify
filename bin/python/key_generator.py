@@ -50,4 +50,4 @@ if __name__ == "__main__":
     # Only call generate_key() if you need to create a new key.
     # generate_key() # Uncomment this line to generate the key if not already done.
     
-    generate_email_cred(username='vedang@uhtasi.org', password='Vikas@sharmila301206')
+    generate_email_cred(username='Username', password='Password')
