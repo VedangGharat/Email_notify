@@ -1,6 +1,29 @@
+# Python virtual environment
 .venv
+
+# VS Code Folder
+.vscode
+
+# Pycache
+bin/python/__pycache__
+
+# Contents of upload outbox
+upload_outbox/*
+
+# Contents of download inbox
+download_inbox/*
+
+# Working Folders
+working/
+logs/
+
+# Development only files
+bin/python/mili*
+bin/python/Test*
+aaron.yaml
+Constants.py
+*.ppk
 *.key
 *.cred
-bin/python/Test.py
 dsad
-git 
+git
