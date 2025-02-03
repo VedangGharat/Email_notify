@@ -9,8 +9,13 @@ class Constants:
 
     SERVER = '{}-{}'.format(ENVIORNMENT, 'DB')
     DATABASE = '{}_{}'.format(ENVIORNMENT, USER_FIRST_NAME)
-        # print(Constants.server, Constants.database)
-    
+       
+    # Add Database Credentials    
+    SERVER_ADDR_SERVER = ''
+    SERVER_ADDR_DB = ''
+    SERVER_ADDR_USERNAME = ''
+    SERVER_ADDR_PASSWD = ''
+
     # EXE paths
     PYTHON_PATH= ''
     WINSCP_PATH= ''
@@ -19,7 +24,7 @@ class Constants:
     EMAIL_SERVER_IP = '128.171.103.65'
     EMAIL_SERVER_PORT = '25'
     EMAIL_SENDER_ADDR = 'noreply@tasi.org'
-    EMAIL_DEV_ADDR = ["vedang@hawaii.edu"]
+    EMAIL_DEV_ADDR = [""] # add developer emails to the list
     EMAIL_CRED_PATH = r'C:\Users\vedang\Vedang\source\repos\TASI_DSSDW\bin\python\email.cred' 
     EMAIL_SECRET_KEY  = r'C:\Users\vedang\Vedang\source\repos\TASI_DSSDW\bin\python\secret.key'
 
