@@ -1,6 +1,6 @@
 # Python virtual environment
 .venv
-
+.gitignore
 # VS Code Folder
 .vscode
 
