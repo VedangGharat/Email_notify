@@ -1,4 +1,0 @@
-2024-04-18 10:58:56,129 - DEBUG - sqlExec instance created, no connection established yet.
-2024-04-18 10:58:56,165 - INFO - Variable substitution completed.
-2024-04-18 10:58:56,793 - INFO - Database connection established.
-2024-04-18 10:58:56,836 - INFO - SQL execution successful and data fetched.
