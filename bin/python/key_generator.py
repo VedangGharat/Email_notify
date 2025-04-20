@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-from Constants import Constants as c
+from login_info import login_info as c
 import os
 
 def generate_key():
@@ -50,4 +50,4 @@ if __name__ == "__main__":
     # Only call generate_key() if you need to create a new key.
     # generate_key() # Uncomment this line to generate the key if not already done.
     
-    generate_email_cred(username='Username', password='Password')
+    generate_email_cred(username='username', password='Password')

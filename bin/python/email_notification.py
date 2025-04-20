@@ -5,53 +5,37 @@ from cryptography.fernet import Fernet as F
 from os.path import isfile
 import pyodbc
 from typing import List, Tuple, Union
-from Constants import Constants as c
+from login_info import login_info as c
 from builtins import ValueError
 
 def send_mail(
-    provider_id: Union[str, List[str]], subject: str, body: str, dev_flag: bool
+    reciever_id: Union[str, List[str]], subject: str, body: str
 ) -> str:
 
-    """
-    Sends an email to one or more providers based on their IDs.
-
-    Args:
-        provider_id (Union[str, List[str]]): A single provider ID or a list of provider IDs.
-        subject (str): The subject of the email.
-        body (str): The body of the email.
-        dev_flag (bool): If True, sends a copy of the email to developers for testing.
-
-    Returns:
-        str: A success message if the email is sent successfully.
-
-    Raises:
-        Exception: If there is an error during the email sending process.
-    """
-    
     # Load sender's email credentials (username and password)
     sender_email, sender_password = _load_cred()
 
-    # Fetch provider email addresses based on the given provider ID(s)
-    provider_email = [
-        _get_provider_email(id)
-        for id in (provider_id if isinstance(provider_id, list) else [provider_id])
+    # Fetch reciever email addresses based on the given reciever ID(s)
+    reciever_email = [
+        _get_reciever_email(id)
+        for id in (reciever_id if isinstance(reciever_id, list) else [reciever_id])
     ]
+    print(reciever_email)
 
-    # Drafting the email message
 
     msg = MIMEMultipart()
-    msg["From"] = c.EMAIL_SENDER_ADDR # Sender's address from constants
+    msg["From"] = c.EMAIL_SENDER_ADDR # Sender's address from login_info
 
     all_recipients = [] # List to store all recipient addresses
 
-    # If dev_flag is True, add developers' emails to BCC for testing purposes
-    if dev_flag:
-        msg["Bcc"] = ", ".join(c.EMAIL_DEV_ADDR)
-        all_recipients += c.EMAIL_DEV_ADDR
 
-    # Add provider emails to the "To" field and recipients list
-    msg["To"] = ", ".join(provider_email)
-    all_recipients.extend(provider_email)
+    if True:
+        msg["Bcc"] = ", ".join(c.EMAIL_SEN_ADDR)
+        all_recipients += c.EMAIL_SEN_ADDR
+
+    # Add reciever emails to the "To" field and recipients list
+    msg["To"] = ", ".join(reciever_email)
+    all_recipients.extend(reciever_email)
     
     # Set the subject and body of the email
     msg["Subject"] = subject
@@ -61,29 +45,20 @@ def send_mail(
     try:
         with smtplib.SMTP(c.EMAIL_SERVER_IP, c.EMAIL_SERVER_PORT) as server:
             server.starttls() # Start TLS encryption for secure communication
-            server.ehlo() # Identify ourselves to the SMTP server
             server.login(sender_email, sender_password) # Log in with credentials
             text = msg.as_string() # Convert message to string format
 
             # Send the email to all recipients
             server.sendmail(sender_email, all_recipients, text)
+            # print('done')
             return 0
     except Exception as e:
         # Raise an exception if there's an error during the email sending process
-        raise Exception(f"Error sending email for provider ID {provider_id}: {str(e)}")
+        raise Exception(f"Error sending email for reciever ID {reciever_id}: {str(e)}")
 
 
 def _load_cred() -> Tuple[str, str]:
 
-    """
-    Loads and decrypts the email credentials.
-
-    Returns:
-        Tuple[str, str]: A tuple containing the sender's email address and password.
-
-    Raises:
-        Exception: If the decryption key or credential file is missing or improperly formatted.
-    """
     # Check if the encryption key file exists 
     if not isfile(c.EMAIL_SECRET_KEY):
         raise Exception(
@@ -107,29 +82,13 @@ def _load_cred() -> Tuple[str, str]:
         raise Exception(
             f"Email Credential file: {c.EMAIL_CRED_PATH} is not formatted properly when decoded. Make sure the username and password are on separate lines prior to encryption."
         )
-
+    # print(cred[0], cred[1])
     return cred[0], cred[1]
 
 
-def _get_provider_email(provider_id: str) -> str:
+def _get_reciever_email(reciever_id: str) -> str:
 
-    """
-    Sends an email to one or more providers based on their IDs.
-
-    Args:
-        provider_id (Union[str, List[str]]): A single provider ID or a list of provider IDs.
-        subject (str): The subject of the email.
-        body (str): The body of the email.
-        dev_flag (bool): If True, sends a copy of the email to developers for testing.
-
-    Returns:
-        str: A success message if the email is sent successfully.
-
-    Raises:
-        Exception: If there is an error during the email sending process.
-    """
-
-    # Database connection details from constants
+    # Database connection details from Login_info
     try:
         server = c.SERVER_ADDR_SERVER
         database = c.SERVER_ADDR_DB
@@ -144,11 +103,11 @@ def _get_provider_email(provider_id: str) -> str:
 
         cursor = cnxn.cursor() # Create a cursor object for executing queries
 
-        # Constructing a unique Provider_ID path (specific to your system)
-        GetDirectory = rf"Submitters\{provider_id}\837"
+        # Constructing a unique Reciever_ID path (specific to your system)
+        GetDirectory = rf"Submitters\{reciever_id}\837"
 
-        # Query to fetch the provider's email address from the database table/view
-        select_statement = "SELECT Email_Address from provider_details.dbo.GetDirectory WHERE Provider_ID" # Query needs to be modified based before put into production
+        # Query to fetch the reciever's email address from the database table/view
+        select_statement = # Query needs to be added based database structure
         query = f"{select_statement} = '{GetDirectory}'"
 
         cursor.execute(query)
@@ -157,10 +116,10 @@ def _get_provider_email(provider_id: str) -> str:
         if row:
             return row.Email_Address
         else:
-            raise ValueError(f"No email found for the provided ID: {id}") # Raise error if no result found
+            raise ValueError(f"No email found for the reciever ID: {id}") # Raise error if no result found
 
     except pyodbc.Error as e:
-        raise ValueError(f"An error occurred while fetching email for provider ID {provider_id}: {e}")
+        raise ValueError(f"An error occurred while fetching email for reciever ID {reciever_id}: {e}")
 
     finally:
         cnxn.close() # Ensure database connection is closed in all cases
